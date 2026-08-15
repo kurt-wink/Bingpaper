@@ -1,5 +1,7 @@
 # Windows Spotlight API Reference
 
+#### 🤖 Generated with Claude
+
 Reverse-engineered from Windows 11's `IrisService.dll` and `DesktopSpotlight.dll`
 (in `MicrosoftWindows.Client.CBS`) and `Microsoft.Windows.ContentDeliveryManager`.
 

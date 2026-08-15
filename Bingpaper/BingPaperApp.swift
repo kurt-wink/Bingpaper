@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		refreshTimer?.cancel()
 		
 		let lastRefresh = UserDefaults.standard.object(forKey: "lastRefreshDate") as? Date ?? .distantPast
-		let nextRefresh = lastRefresh.addingTimeInterval(86400)
+		let nextRefresh = lastRefresh.addingTimeInterval(86400) // 24 hours
 		let delay = max(0, nextRefresh.timeIntervalSinceNow)
 		
 		let timer = DispatchSource.makeTimerSource(queue: .main)
