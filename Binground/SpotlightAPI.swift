@@ -9,7 +9,6 @@ enum SpotlightSource: String, CaseIterable, Codable {
 struct SpotlightImage {
     let imageURL: URL
     let title: String?
-    let location: String?
     let copyright: String?
 }
 
@@ -109,8 +108,7 @@ enum SpotlightAPIClient {
                 .components(separatedBy: "\r\n").first
             return SpotlightImage(
                 imageURL: imageURL,
-                title: creative.ad.title,
-                location: location,
+                title: location,
                 copyright: creative.ad.copyright
             )
 
@@ -122,8 +120,7 @@ enum SpotlightAPIClient {
             }
             return SpotlightImage(
                 imageURL: imageURL,
-                title: nil,
-                location: creative.ad.title_text?.tx,
+                title: creative.ad.title_text?.tx,
                 copyright: creative.ad.copyright_text?.tx
             )
         }

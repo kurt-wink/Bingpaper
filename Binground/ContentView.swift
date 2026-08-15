@@ -15,10 +15,11 @@ struct ContentView: View {
     var body: some View {
         Form {
             Section("Source") {
-                Picker("API", selection: $apiSource) {
-                    Text("Desktop Spotlight (4K)").tag(SpotlightSource.desktop.rawValue)
-                    Text("Lock Screen Spotlight (1080p)").tag(SpotlightSource.lockScreen.rawValue)
+                Picker("", selection: $apiSource) {
+                    Text("Desktop Spotlight").tag(SpotlightSource.desktop.rawValue)
+                    Text("Lock Screen Spotlight").tag(SpotlightSource.lockScreen.rawValue)
                 }
+				.labelsHidden()
                 .pickerStyle(.radioGroup)
             }
 
@@ -56,6 +57,8 @@ struct ContentView: View {
                         .foregroundStyle(.red)
                         .font(.caption)
                 }
+				
+				
 
                 Button {
                     let source = SpotlightSource(rawValue: apiSource) ?? .desktop
@@ -78,28 +81,22 @@ struct ContentView: View {
 
             if wallpaperManager.currentWallpaperURL != nil {
                 Section("Current Image") {
-                    if let location = wallpaperManager.imageLocation {
-                        LabeledContent("Location", value: location)
-                    }
                     if let title = wallpaperManager.imageTitle {
                         LabeledContent("Title", value: title)
                     }
                     if let copyright = wallpaperManager.imageCopyright {
-                        LabeledContent("Photographer", value: copyright)
+                        LabeledContent("Source", value: copyright)
                     }
 
-                    Button("Reveal in Finder") {
+                    Button("Reveal in Finder...") {
                         wallpaperManager.revealInFinder()
                     }
                 }
             }
 
-            Section {
-                Button("Quit Binground") {
-                    NSApp.terminate(nil)
-                }
-                .foregroundStyle(.red)
-            }
+			Button("Quit") {
+				NSApp.terminate(nil)
+			}
         }
         .formStyle(.grouped)
         .frame(width: 350)

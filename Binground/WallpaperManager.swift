@@ -6,7 +6,6 @@ class WallpaperManager {
     var isRefreshing = false
     var lastError: String?
     var imageTitle: String? = UserDefaults.standard.string(forKey: "imageTitle")
-    var imageLocation: String? = UserDefaults.standard.string(forKey: "imageLocation")
     var imageCopyright: String? = UserDefaults.standard.string(forKey: "imageCopyright")
 
     private static let logger = Logger(subsystem: "com.kurtwink.Binground", category: "WallpaperManager")
@@ -29,13 +28,11 @@ class WallpaperManager {
             try setWallpaper(imageURL: localURL)
             cleanupOldImages(keeping: localURL)
             imageTitle = spotlight.title
-            imageLocation = spotlight.location
             imageCopyright = spotlight.copyright
             UserDefaults.standard.set(Date(), forKey: "lastRefreshDate")
             UserDefaults.standard.set(spotlight.title, forKey: "imageTitle")
-            UserDefaults.standard.set(spotlight.location, forKey: "imageLocation")
             UserDefaults.standard.set(spotlight.copyright, forKey: "imageCopyright")
-            Self.logger.info("Wallpaper set: \(spotlight.title ?? spotlight.location ?? "untitled")")
+            Self.logger.info("Wallpaper set: \(spotlight.title ?? "untitled")")
         } catch {
             lastError = error.localizedDescription
             Self.logger.error("Refresh failed: \(error.localizedDescription)")
