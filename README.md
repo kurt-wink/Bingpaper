@@ -4,9 +4,11 @@ Use Bing/Windows Spotlight's images on macOS, without needing to use the [Bing W
 
 Bingpaper uses the same API as Windows Spotlight.
 
+There's no menu bar item, most macOS setups have more than enough of those already! It just runs in the background. If you need to change settings or quit the program, relaunch the .app to show the window again. There's no app icon just yet.
+
 ## Screenshot
 
-![Bingpaper UI](./Documentation/Bingpaper 2026-08-15.png)
+![Bingpaper UI](./Documentation/Bingpaper%202026-08-15.png)
 
 ## AI Use Disclosure
 LLM-generated code has been used in this project. As with all projects I create:
