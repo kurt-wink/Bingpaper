@@ -18,6 +18,8 @@ struct BingroundApp: App {
 class AppDelegate: NSObject, NSApplicationDelegate {
     let wallpaperManager = WallpaperManager()
     private var refreshTimer: DispatchSourceTimer?
+	
+	static var defaultLocale: Locale = Locale(identifier: UserDefaults.standard.string(forKey: "locale") ?? "en-NZ")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -57,20 +59,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func performRefresh() {
         let source = SpotlightSource(rawValue: UserDefaults.standard.string(forKey: "apiSource") ?? "") ?? .desktop
-        let countryCode = UserDefaults.standard.string(forKey: "countryCode")
-            ?? Locale.current.region?.identifier ?? "US"
-        let locale = UserDefaults.standard.string(forKey: "locale")
-            ?? Self.defaultLocaleTag()
 
         Task {
-            await wallpaperManager.refreshWallpaper(source: source, countryCode: countryCode, locale: locale)
+			await wallpaperManager.refreshWallpaper(source: source, locale: AppDelegate.defaultLocale)
             scheduleNextRefresh()
         }
-    }
-
-    static func defaultLocaleTag() -> String {
-        let lang = Locale.current.language.languageCode?.identifier ?? "en"
-        let region = Locale.current.region?.identifier ?? "US"
-        return "\(lang)-\(region)"
     }
 }

@@ -1,6 +1,52 @@
+import AppKit
 import ServiceManagement
 import SwiftUI
 import UniformTypeIdentifiers
+
+struct LocaleComboBox: NSViewRepresentable {
+	@Binding var selection: String
+
+	private static let identifiers: [String] = Locale.availableIdentifiers
+		.map { Locale(identifier: $0).identifier(.bcp47) }
+		.filter { !$0.isEmpty }
+		.sorted()
+
+	func makeNSView(context: Context) -> NSComboBox {
+		let comboBox = NSComboBox()
+		comboBox.usesDataSource = false
+		comboBox.isEditable = true
+		comboBox.completes = true
+		comboBox.addItems(withObjectValues: Self.identifiers)
+		comboBox.stringValue = selection
+		comboBox.delegate = context.coordinator
+		return comboBox
+	}
+
+	func updateNSView(_ nsView: NSComboBox, context: Context) {
+		if nsView.stringValue != selection {
+			nsView.stringValue = selection
+		}
+	}
+
+	func makeCoordinator() -> Coordinator { Coordinator(selection: $selection) }
+
+	class Coordinator: NSObject, NSComboBoxDelegate, NSTextFieldDelegate {
+		@Binding var selection: String
+		init(selection: Binding<String>) { _selection = selection }
+
+		func comboBoxSelectionDidChange(_ notification: Notification) {
+			guard let comboBox = notification.object as? NSComboBox else { return }
+			DispatchQueue.main.async {
+				self.selection = comboBox.objectValueOfSelectedItem as? String ?? comboBox.stringValue
+			}
+		}
+
+		func controlTextDidChange(_ notification: Notification) {
+			guard let comboBox = notification.object as? NSComboBox else { return }
+			selection = comboBox.stringValue
+		}
+	}
+}
 
 struct WallpaperDocument: FileDocument {
 	static var readableContentTypes: [UTType] { [.jpeg] }
@@ -19,8 +65,7 @@ struct WallpaperDocument: FileDocument {
 struct ContentView: View {
 	@Environment(WallpaperManager.self) private var wallpaperManager
 	@AppStorage("apiSource") private var apiSource = SpotlightSource.desktop.rawValue
-	@AppStorage("countryCode") private var countryCode = Locale.current.region?.identifier ?? "US"
-	@AppStorage("locale") private var locale = AppDelegate.defaultLocaleTag()
+	@AppStorage("locale") private var locale = AppDelegate.defaultLocale.identifier
 	@State private var launchAtLogin = SMAppService.mainApp.status == .enabled
 	@State private var isExporting = false
 	@State private var exportDocument: WallpaperDocument?
@@ -38,13 +83,10 @@ struct ContentView: View {
 				}
 				.labelsHidden()
 				.pickerStyle(.radioGroup)
-			}
-			
-			Section("Locale") {
-				TextField("Country Code", text: $countryCode)
-					.textFieldStyle(.roundedBorder)
-				TextField("Locale", text: $locale)
-					.textFieldStyle(.roundedBorder)
+				
+				LabeledContent("Locale") {
+					LocaleComboBox(selection: $locale)
+				}
 			}
 			
 			Section("System") {
@@ -62,8 +104,8 @@ struct ContentView: View {
 					}
 			}
 			
-			Section("Status") {
-				LabeledContent("Last Refresh") {
+			Section("Image Information") {
+				LabeledContent("Refreshed at") {
 					HStack(spacing: 6) {
 						if let date = lastRefreshDate {
 							Text(date, format: .dateTime)
@@ -74,7 +116,7 @@ struct ContentView: View {
 							let source = SpotlightSource(rawValue: apiSource) ?? .desktop
 							Task {
 								await wallpaperManager.refreshWallpaper(
-									source: source, countryCode: countryCode, locale: locale
+									source: source, locale: Locale(identifier: locale)
 								)
 								rescheduleTimer()
 							}
@@ -96,15 +138,21 @@ struct ContentView: View {
 						.foregroundStyle(.red)
 						.font(.caption)
 				}
-			}
-			
-			if wallpaperManager.currentWallpaperURL != nil {
-				Section("Image Information") {
-					if let title = wallpaperManager.imageTitle {
-						LabeledContent("Title", value: title)
+				
+				if wallpaperManager.currentWallpaperURL != nil {
+					if let title = wallpaperManager.currentImage?.title {
+						VStack(alignment: .leading) {
+							Text("Title")
+							Text(title)
+								.foregroundStyle(.secondary)
+						}
 					}
-					if let copyright = wallpaperManager.imageCopyright {
-						LabeledContent("Source", value: copyright)
+					if let copyright = wallpaperManager.currentImage?.copyright {
+						VStack(alignment: .leading) {
+							Text("Source")
+							Text(copyright)
+								.foregroundStyle(.secondary)
+						}
 					}
 					
 					HStack {
@@ -127,13 +175,18 @@ struct ContentView: View {
 			}
 		}
 		.formStyle(.grouped)
-		.frame(width: 350)
-		.fileExporter(isPresented: $isExporting, document: exportDocument, contentType: .jpeg, defaultFilename: "wallpaper") { _ in }
+		.frame(width: 350, height: 575)
+		.fileExporter(isPresented: $isExporting, document: exportDocument, contentType: .jpeg, defaultFilename: saveFilename) { _ in }
 		.onAppear {
 			launchAtLogin = SMAppService.mainApp.status == .enabled
 		}
 	}
 	
+	private var saveFilename: String {
+		let name = wallpaperManager.currentImage?.imageURL.lastPathComponent ?? "wallpaper.jpg"
+		return String(name.split(separator: "_", maxSplits: 1).last ?? Substring(name))
+	}
+
 	private func rescheduleTimer() {
 		guard let delegate = NSApp.delegate as? AppDelegate else { return }
 		delegate.scheduleNextRefresh()

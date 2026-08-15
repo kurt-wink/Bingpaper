@@ -6,7 +6,7 @@ enum SpotlightSource: String, CaseIterable, Codable {
     case lockScreen
 }
 
-struct SpotlightImage {
+struct SpotlightImage: Codable {
     let imageURL: URL
     let title: String?
     let copyright: String?
@@ -81,8 +81,8 @@ struct LockScreenTextValue: Codable {
 enum SpotlightAPIClient {
     private static let logger = Logger(subsystem: "com.kurtwink.Binground", category: "SpotlightAPI")
 
-    static func fetchImage(source: SpotlightSource, countryCode: String, locale: String) async throws -> SpotlightImage {
-        let url = buildURL(source: source, countryCode: countryCode, locale: locale)
+    static func fetchImage(source: SpotlightSource, locale: Locale) async throws -> SpotlightImage {
+        let url = buildURL(source: source, locale: locale)
         logger.info("Fetching from \(source.rawValue): \(url)")
 
         let (data, response) = try await URLSession.shared.data(from: url)
@@ -126,7 +126,9 @@ enum SpotlightAPIClient {
         }
     }
 
-    private static func buildURL(source: SpotlightSource, countryCode: String, locale: String) -> URL {
+    private static func buildURL(source: SpotlightSource, locale: Locale) -> URL {
+        let localeTag = locale.identifier(.bcp47)
+        let countryCode = locale.region?.identifier ?? localeTag
         var components: URLComponents
 
         switch source {
@@ -136,7 +138,7 @@ enum SpotlightAPIClient {
                 URLQueryItem(name: "placement", value: "88000820"),
                 URLQueryItem(name: "bcnt", value: "1"),
                 URLQueryItem(name: "country", value: countryCode),
-                URLQueryItem(name: "locale", value: locale),
+                URLQueryItem(name: "locale", value: localeTag),
                 URLQueryItem(name: "fmt", value: "json"),
             ]
 
@@ -151,8 +153,8 @@ enum SpotlightAPIClient {
                 URLQueryItem(name: "disphorzres", value: String(w)),
                 URLQueryItem(name: "dispvertres", value: String(h)),
                 URLQueryItem(name: "lo", value: "80217"),
-                URLQueryItem(name: "pl", value: locale),
-                URLQueryItem(name: "lc", value: locale),
+                URLQueryItem(name: "pl", value: localeTag),
+                URLQueryItem(name: "lc", value: localeTag),
                 URLQueryItem(name: "ctry", value: countryCode),
                 URLQueryItem(name: "rafb", value: "0"),
             ]

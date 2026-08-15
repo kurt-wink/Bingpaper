@@ -5,8 +5,10 @@ import os
 class WallpaperManager {
     var isRefreshing = false
     var lastError: String?
-    var imageTitle: String? = UserDefaults.standard.string(forKey: "imageTitle")
-    var imageCopyright: String? = UserDefaults.standard.string(forKey: "imageCopyright")
+    var currentImage: SpotlightImage? = {
+        guard let data = UserDefaults.standard.data(forKey: "currentImage") else { return nil }
+        return try? JSONDecoder().decode(SpotlightImage.self, from: data)
+    }()
 
     private static let logger = Logger(subsystem: "com.kurtwink.Binground", category: "WallpaperManager")
 
@@ -15,23 +17,23 @@ class WallpaperManager {
         return appSupport.appendingPathComponent("Binground/Wallpapers", isDirectory: true)
     }
 
-    func refreshWallpaper(source: SpotlightSource, countryCode: String, locale: String) async {
+    func refreshWallpaper(source: SpotlightSource, locale: Locale) async {
         isRefreshing = true
         lastError = nil
         defer { isRefreshing = false }
 
         do {
             let spotlight = try await SpotlightAPIClient.fetchImage(
-                source: source, countryCode: countryCode, locale: locale
+                source: source, locale: locale
             )
             let localURL = try await downloadImage(from: spotlight.imageURL)
             try setWallpaper(imageURL: localURL)
             cleanupOldImages(keeping: localURL)
-            imageTitle = spotlight.title
-            imageCopyright = spotlight.copyright
+            currentImage = spotlight
             UserDefaults.standard.set(Date(), forKey: "lastRefreshDate")
-            UserDefaults.standard.set(spotlight.title, forKey: "imageTitle")
-            UserDefaults.standard.set(spotlight.copyright, forKey: "imageCopyright")
+            if let encoded = try? JSONEncoder().encode(spotlight) {
+                UserDefaults.standard.set(encoded, forKey: "currentImage")
+            }
             Self.logger.info("Wallpaper set: \(spotlight.title ?? "untitled")")
         } catch {
             lastError = error.localizedDescription
