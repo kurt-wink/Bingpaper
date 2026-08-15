@@ -12,37 +12,37 @@
 			containerPortal = 4587D3B9302FCE2800FE5F3B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4587D3C0302FCE2800FE5F3B;
-			remoteInfo = Binground;
+			remoteInfo = Bingpaper;
 		};
 		4587D3DD302FCE2900FE5F3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4587D3B9302FCE2800FE5F3B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4587D3C0302FCE2800FE5F3B;
-			remoteInfo = Binground;
+			remoteInfo = Bingpaper;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4587D3C1302FCE2800FE5F3B /* Binground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Binground.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4587D3D2302FCE2900FE5F3B /* BingroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4587D3DC302FCE2900FE5F3B /* BingroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4587D3C1302FCE2800FE5F3B /* Bingpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bingpaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4587D3D2302FCE2900FE5F3B /* BingpaperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingpaperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4587D3DC302FCE2900FE5F3B /* BingpaperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingpaperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4587D3C3302FCE2800FE5F3B /* Binground */ = {
+		4587D3C3302FCE2800FE5F3B /* Bingpaper */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Binground;
+			path = Bingpaper;
 			sourceTree = "<group>";
 		};
-		4587D3D5302FCE2900FE5F3B /* BingroundTests */ = {
+		4587D3D5302FCE2900FE5F3B /* BingpaperTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BingroundTests;
+			path = BingpaperTests;
 			sourceTree = "<group>";
 		};
-		4587D3DF302FCE2900FE5F3B /* BingroundUITests */ = {
+		4587D3DF302FCE2900FE5F3B /* BingpaperUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BingroundUITests;
+			path = BingpaperUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		4587D3B8302FCE2800FE5F3B = {
 			isa = PBXGroup;
 			children = (
-				4587D3C3302FCE2800FE5F3B /* Binground */,
-				4587D3D5302FCE2900FE5F3B /* BingroundTests */,
-				4587D3DF302FCE2900FE5F3B /* BingroundUITests */,
+				4587D3C3302FCE2800FE5F3B /* Bingpaper */,
+				4587D3D5302FCE2900FE5F3B /* BingpaperTests */,
+				4587D3DF302FCE2900FE5F3B /* BingpaperUITests */,
 				4587D3C2302FCE2800FE5F3B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		4587D3C2302FCE2800FE5F3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4587D3C1302FCE2800FE5F3B /* Binground.app */,
-				4587D3D2302FCE2900FE5F3B /* BingroundTests.xctest */,
-				4587D3DC302FCE2900FE5F3B /* BingroundUITests.xctest */,
+				4587D3C1302FCE2800FE5F3B /* Bingpaper.app */,
+				4587D3D2302FCE2900FE5F3B /* BingpaperTests.xctest */,
+				4587D3DC302FCE2900FE5F3B /* BingpaperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4587D3C0302FCE2800FE5F3B /* Binground */ = {
+		4587D3C0302FCE2800FE5F3B /* Bingpaper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4587D3E6302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "Binground" */;
+			buildConfigurationList = 4587D3E6302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "Bingpaper" */;
 			buildPhases = (
 				4587D3BD302FCE2800FE5F3B /* Sources */,
 				4587D3BE302FCE2800FE5F3B /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4587D3C3302FCE2800FE5F3B /* Binground */,
+				4587D3C3302FCE2800FE5F3B /* Bingpaper */,
 			);
-			name = Binground;
+			name = Bingpaper;
 			packageProductDependencies = (
 			);
-			productName = Binground;
-			productReference = 4587D3C1302FCE2800FE5F3B /* Binground.app */;
+			productName = Bingpaper;
+			productReference = 4587D3C1302FCE2800FE5F3B /* Bingpaper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4587D3D1302FCE2900FE5F3B /* BingroundTests */ = {
+		4587D3D1302FCE2900FE5F3B /* BingpaperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4587D3E9302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingroundTests" */;
+			buildConfigurationList = 4587D3E9302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingpaperTests" */;
 			buildPhases = (
 				4587D3CE302FCE2900FE5F3B /* Sources */,
 				4587D3CF302FCE2900FE5F3B /* Frameworks */,
@@ -131,18 +131,18 @@
 				4587D3D4302FCE2900FE5F3B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4587D3D5302FCE2900FE5F3B /* BingroundTests */,
+				4587D3D5302FCE2900FE5F3B /* BingpaperTests */,
 			);
-			name = BingroundTests;
+			name = BingpaperTests;
 			packageProductDependencies = (
 			);
-			productName = BingroundTests;
-			productReference = 4587D3D2302FCE2900FE5F3B /* BingroundTests.xctest */;
+			productName = BingpaperTests;
+			productReference = 4587D3D2302FCE2900FE5F3B /* BingpaperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4587D3DB302FCE2900FE5F3B /* BingroundUITests */ = {
+		4587D3DB302FCE2900FE5F3B /* BingpaperUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4587D3EC302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingroundUITests" */;
+			buildConfigurationList = 4587D3EC302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingpaperUITests" */;
 			buildPhases = (
 				4587D3D8302FCE2900FE5F3B /* Sources */,
 				4587D3D9302FCE2900FE5F3B /* Frameworks */,
@@ -154,13 +154,13 @@
 				4587D3DE302FCE2900FE5F3B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4587D3DF302FCE2900FE5F3B /* BingroundUITests */,
+				4587D3DF302FCE2900FE5F3B /* BingpaperUITests */,
 			);
-			name = BingroundUITests;
+			name = BingpaperUITests;
 			packageProductDependencies = (
 			);
-			productName = BingroundUITests;
-			productReference = 4587D3DC302FCE2900FE5F3B /* BingroundUITests.xctest */;
+			productName = BingpaperUITests;
+			productReference = 4587D3DC302FCE2900FE5F3B /* BingpaperUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4587D3BC302FCE2800FE5F3B /* Build configuration list for PBXProject "Binground" */;
+			buildConfigurationList = 4587D3BC302FCE2800FE5F3B /* Build configuration list for PBXProject "Bingpaper" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4587D3C0302FCE2800FE5F3B /* Binground */,
-				4587D3D1302FCE2900FE5F3B /* BingroundTests */,
-				4587D3DB302FCE2900FE5F3B /* BingroundUITests */,
+				4587D3C0302FCE2800FE5F3B /* Bingpaper */,
+				4587D3D1302FCE2900FE5F3B /* BingpaperTests */,
+				4587D3DB302FCE2900FE5F3B /* BingpaperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		4587D3D4302FCE2900FE5F3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4587D3C0302FCE2800FE5F3B /* Binground */;
+			target = 4587D3C0302FCE2800FE5F3B /* Bingpaper */;
 			targetProxy = 4587D3D3302FCE2900FE5F3B /* PBXContainerItemProxy */;
 		};
 		4587D3DE302FCE2900FE5F3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4587D3C0302FCE2800FE5F3B /* Binground */;
+			target = 4587D3C0302FCE2800FE5F3B /* Bingpaper */;
 			targetProxy = 4587D3DD302FCE2900FE5F3B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -392,11 +392,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Binground/Binground.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bingpaper/Bingpaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Binground/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Bingpaper/Preview Content\"";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
@@ -418,7 +418,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.Binground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.Bingpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -430,11 +430,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Binground/Binground.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Bingpaper/Bingpaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Binground/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Bingpaper/Preview Content\"";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
@@ -456,7 +456,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.Binground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.Bingpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -472,11 +472,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingroundTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingpaperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Binground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Binground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bingpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bingpaper";
 			};
 			name = Debug;
 		};
@@ -489,11 +489,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingroundTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingpaperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Binground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Binground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bingpaper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bingpaper";
 			};
 			name = Release;
 		};
@@ -504,11 +504,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingroundUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingpaperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Binground;
+				TEST_TARGET_NAME = Bingpaper;
 			};
 			name = Debug;
 		};
@@ -519,18 +519,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingroundUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurtwink.BingpaperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Binground;
+				TEST_TARGET_NAME = Bingpaper;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4587D3BC302FCE2800FE5F3B /* Build configuration list for PBXProject "Binground" */ = {
+		4587D3BC302FCE2800FE5F3B /* Build configuration list for PBXProject "Bingpaper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4587D3E4302FCE2900FE5F3B /* Debug */,
@@ -539,7 +539,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4587D3E6302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "Binground" */ = {
+		4587D3E6302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "Bingpaper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4587D3E7302FCE2900FE5F3B /* Debug */,
@@ -548,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4587D3E9302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingroundTests" */ = {
+		4587D3E9302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingpaperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4587D3EA302FCE2900FE5F3B /* Debug */,
@@ -557,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4587D3EC302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingroundUITests" */ = {
+		4587D3EC302FCE2900FE5F3B /* Build configuration list for PBXNativeTarget "BingpaperUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4587D3ED302FCE2900FE5F3B /* Debug */,
