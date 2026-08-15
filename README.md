@@ -14,7 +14,7 @@ There's no menu bar item, most macOS setups have more than enough of those alrea
 LLM-generated code has been used in this project. As with all projects I create:
 - All READMEs are human written: If I didn't bother to write it, you probably won't be bothered to read it :^)
 - I disclose when LLM-generated code or documentation has been used.
-- All code and software functionaly is personally reviewed by me.
+- All code and software functionality is personally reviewed by me.
   - This doesn't mean the software comes with a guarantee.
   - For small quick projects, I take a "good enough" approach to avoid spending too much time on one thing.
 - My own personal software developement experience is used to direct the output of LLM-generated code.
