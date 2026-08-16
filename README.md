@@ -8,7 +8,7 @@ There's no menu bar item, most macOS setups have more than enough of those alrea
 
 ## Screenshot
 
-![Bingpaper UI](./Documentation/Bingpaper%202026-08-15.png)
+![Bingpaper UI](./Documentation/Bingpaper%202026-08-16.png)
 
 ## AI Use Disclosure
 LLM-generated code has been used in this project. As with all projects I create:
