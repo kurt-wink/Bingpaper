@@ -59,9 +59,55 @@ class WallpaperManager {
 	}
 	
 	private func setWallpaper(imageURL: URL) throws {
-		for screen in NSScreen.screens {
-			try NSWorkspace.shared.setDesktopImageURL(imageURL, for: screen, options: [:])
+		if !setWallpaperOnAllSpaces(imageURL: imageURL) {
+			for screen in NSScreen.screens {
+				try NSWorkspace.shared.setDesktopImageURL(imageURL, for: screen, options: [:])
+			}
 		}
+	}
+
+	private func setWallpaperOnAllSpaces(imageURL: URL) -> Bool {
+		typealias DefaultConnectionFn = @convention(c) () -> Int32
+		typealias CopySpacesFn = @convention(c) (Int32) -> CFArray?
+		typealias DisplayForUUIDFn = @convention(c) (CFTypeRef) -> UInt32
+		typealias SetDisplayFn = @convention(c) (UInt32, CFDictionary, Int32, Int32, CFString) -> Void
+
+		guard let cg = dlopen("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics", RTLD_LAZY),
+			  let hi = dlopen("/System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/HIServices", RTLD_LAZY)
+		else { return false }
+		defer { dlclose(cg); dlclose(hi) }
+
+		guard let s1 = dlsym(cg, "_CGSDefaultConnection"),
+			  let s2 = dlsym(cg, "CGSCopyManagedDisplaySpaces"),
+			  let s3 = dlsym(cg, "CGSGetDisplayForUUID"),
+			  let s4 = dlsym(hi, "DesktopPictureSetDisplayForSpace")
+		else { return false }
+
+		let defaultConnection = unsafeBitCast(s1, to: DefaultConnectionFn.self)
+		let copySpaces = unsafeBitCast(s2, to: CopySpacesFn.self)
+		let displayForUUID = unsafeBitCast(s3, to: DisplayForUUIDFn.self)
+		let setDisplay = unsafeBitCast(s4, to: SetDisplayFn.self)
+
+		guard let displays = copySpaces(defaultConnection()) as? [[String: Any]] else { return false }
+
+		let settings = ["ImageFilePath": imageURL.path] as CFDictionary
+		var applied = false
+
+		for display in displays {
+			guard let displayUUIDStr = display["Display Identifier"] as? String,
+				  let spaces = display["Spaces"] as? [[String: Any]],
+				  let displayUUID = CFUUIDCreateFromString(nil, displayUUIDStr as CFString)
+			else { continue }
+
+			let displayID = displayForUUID(displayUUID)
+			for space in spaces {
+				guard let spaceUUID = space["uuid"] as? String else { continue }
+				setDisplay(displayID, settings, 0, 0, spaceUUID as CFString)
+				applied = true
+			}
+		}
+
+		return applied
 	}
 	
 	var currentWallpaperURL: URL? {

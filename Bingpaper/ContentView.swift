@@ -20,6 +20,7 @@ struct ContentView: View {
 	@Environment(WallpaperManager.self) private var wallpaperManager
 	@AppStorage("apiSource") private var apiSource = SpotlightSource.desktop.rawValue
 	@AppStorage("locale") private var locale = AppDelegate.defaultLocale.identifier
+	@AppStorage("refreshInterval") private var refreshInterval: Int = 1440
 	@State private var launchAtLogin = SMAppService.mainApp.status == .enabled
 	@State private var isExporting = false
 	@State private var exportDocument: WallpaperDocument?
@@ -40,6 +41,7 @@ struct ContentView: View {
 				
 				LabeledContent("Locale") {
 					LocaleComboBox(selection: $locale)
+						.frame(maxWidth: 80)
 				}
 			}
 			
@@ -59,7 +61,22 @@ struct ContentView: View {
 			}
 			
 			Section("Image Information") {
-				LabeledContent("Refreshed at") {
+				Picker("Refresh", selection: $refreshInterval) {
+					Text("Every 5 Minutes").tag(5)
+					Text("Every 15 Minutes").tag(15)
+					Text("Every 30 Minutes").tag(30)
+					Text("Every 1 Hour").tag(60)
+					Text("Every 2 Hours").tag(120)
+					Text("Every 4 Hours").tag(240)
+					Text("Every 8 Hours").tag(480)
+					Text("Every 12 Hours").tag(720)
+					Text("Every Day").tag(1440)
+				}
+				.onChange(of: refreshInterval) {
+					rescheduleTimer()
+				}
+
+				LabeledContent("Last Refreshed") {
 					HStack(spacing: 6) {
 						if let date = lastRefreshDate {
 							Text(date, format: .dateTime)
@@ -129,7 +146,7 @@ struct ContentView: View {
 			}
 		}
 		.formStyle(.grouped)
-		.frame(width: 350, height: 575)
+		.frame(width: 350, height: 640)
 		.fileExporter(isPresented: $isExporting, document: exportDocument, contentType: .jpeg, defaultFilename: saveFilename) { _ in }
 		.onAppear {
 			launchAtLogin = SMAppService.mainApp.status == .enabled
